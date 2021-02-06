@@ -13,4 +13,6 @@ WORKDIR /app
 COPY --from=build /app/fejkApi /app
 COPY --from=build /app/.env /app
 
+EXPOSE 8124
+
 CMD ["./fejkApi"]
