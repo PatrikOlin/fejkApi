@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/PatrikOlin/fejkApi/db"
+	"github.com/PatrikOlin/fejkApi/pkg/routes"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
@@ -28,9 +29,9 @@ func main() {
 
 	r := mux.NewRouter()
 	api := r.PathPrefix("/v1").Subrouter()
-	api.HandleFunc("/articles", getArticle).Methods(http.MethodGet)
-	api.HandleFunc("/people", getPerson).Methods(http.MethodGet)
-	api.HandleFunc("/companies", getCompany).Methods(http.MethodGet)
+	api.HandleFunc("/articles", routes.GetArticle).Methods(http.MethodGet)
+	api.HandleFunc("/people", routes.GetPerson).Methods(http.MethodGet)
+	api.HandleFunc("/companies", routes.GetCompany).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(":8124", handlers.CombinedLoggingHandler(logFile, handlers.CORS()(r))))
 
